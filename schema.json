@@ -1,0 +1,194 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LongPage Dataset Schema",
+  "description": "Schema for the LongPage dataset content field",
+  "type": "object",
+  "properties": {
+    "use_prompt": {
+      "type": "string",
+      "description": "The synthetic user prompt that generated this book"
+    },
+    "book_highlight": {
+      "type": "string",
+      "description": "A concise highlight or summary of the book's core concept"
+    },
+    "book_title": {
+      "type": "string",
+      "description": "The title of the book"
+    },
+    "book_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags or genres associated with the book"
+    },
+    "book_archetype": {
+      "type": "string",
+      "description": "The literary archetype or category of the book"
+    },
+    "world_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fundamental rules of the book's world that differ from reality"
+    },
+    "story_arcs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Major story arcs or plot threads throughout the book"
+    },
+    "character_archetypes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Mapping of character names to their archetypes"
+    },
+    "writing_style": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Description of the writing style and techniques used"
+    },
+    "book_characters": {
+      "type": "object",
+      "properties": {
+        "main_characters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of main character names"
+        },
+        "side_characters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of side character names"
+        }
+      },
+      "required": ["main_characters", "side_characters"]
+    },
+    "book_chapters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "chapter": {
+            "type": "string",
+            "description": "Full text of the chapter"
+          },
+          "embedding_space": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "dialog": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "world_building": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "exposition": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "romantic": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "erotic": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "pacing": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            },
+            "required": ["action", "dialog", "world_building", "exposition", "romantic", "erotic", "pacing"]
+          },
+          "chapter_summary": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Bullet-point summary of the chapter"
+          },
+          "scene_breakdown": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "scene_name": {
+                  "type": "string"
+                },
+                "word_count": {
+                  "type": "integer"
+                },
+                "embedding_space": {
+                  "type": "object",
+                  "properties": {
+                    "action": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "dialog": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "world_building": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "exposition": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "romantic": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "erotic": {"type": "integer", "minimum": 0, "maximum": 100},
+                    "pacing": {"type": "integer", "minimum": 0, "maximum": 100}
+                  },
+                  "required": ["action", "dialog", "world_building", "exposition", "romantic", "erotic", "pacing"]
+                },
+                "narrative_focus": {
+                  "type": "string"
+                },
+                "narrative_perspective": {
+                  "type": "string"
+                },
+                "scene_summary_short": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["scene_name", "word_count", "embedding_space", "narrative_focus", "narrative_perspective", "scene_summary_short"]
+            }
+          }
+        },
+        "required": ["chapter", "embedding_space", "chapter_summary", "scene_breakdown"]
+      },
+      "description": "Mapping of chapter titles to chapter data"
+    }
+  },
+  "required": [
+    "use_prompt",
+    "book_highlight",
+    "book_title",
+    "book_tags",
+    "book_archetype",
+    "world_rules",
+    "story_arcs",
+    "character_archetypes",
+    "writing_style",
+    "book_characters",
+    "book_chapters"
+  ]
+}
