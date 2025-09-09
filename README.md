@@ -9,6 +9,9 @@ original dataset https://huggingface.co/datasets/Pageshift-Entertainment/LongPag
 
 I wanted to put two new AI models to the test: Qwen3-Max as a planner and GLM-4.5 with CLAUDE CODE as an executor. While browsing r/LocalLLaMA, I came across a mention of a dataset called LongPage — designed to help models write full-length books with structured reasoning. The original poster didn’t share how they generated it, so I decided to build my own generator from scratch. I’m using Qwen3-Max to plan then handing that plan off to GLM-4.5 with CLAUDE CODE to execute and generate the actual content. This repo is the result of that experiment. 
 
+How i did it ?
+
+I copied the Reddit post and its discussion,readme on huggingface,exampel_compose.py , i asked qwen3 max to design a plan for generating LongPage-compatible datasets from scratch. 
 ## Getting Started
 
 ### What You Need
