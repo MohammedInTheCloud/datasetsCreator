@@ -75,7 +75,7 @@ Each line in this file represents one book, fully structured with metadata, chap
 You can customize the tool by editing the `.env` file:
 
 - `LLM_API_KEY`: Your API key
-- `LLM_MODEL`: The model you want to use (e.g., `llama3-70b-8192`, `gpt-4-turbo`)
+- `LLM_MODEL`: The model you want to use (e.g., `llama4`)
 - `LLM_BASE_URL`: The API endpoint
 - `MAX_RETRIES`: How many times to retry if an API call fails
 - `RATE_LIMIT_DELAY`: Delay between retries to avoid hitting rate limits
@@ -88,6 +88,10 @@ The tool works with several LLM providers:
 - **Ollama**: Run models locally. Install from ollama.com.
 - **LM Studio**: Another option for local models. Download from lmstudio.ai.
 - **OpenAI**: Use GPT models with your official API key.
+- 
+## Models with thinking modes are not supported 
+
+You cannot use models with thinking modes.
 
 ## Tips for Success
 
