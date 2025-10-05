@@ -9,6 +9,9 @@ original dataset https://huggingface.co/datasets/Pageshift-Entertainment/LongPag
 
 I wanted to put two new AI models to the test: Qwen3-Max as a planner and GLM-4.5 with CLAUDE CODE as an executor. While browsing r/LocalLLaMA, I came across a mention of a dataset called LongPage — designed to help models write full-length books with structured reasoning. The original poster didn’t share how they generated it, so I decided to build my own generator from scratch. I’m using Qwen3-Max to plan then handing that plan off to GLM-4.5 with CLAUDE CODE to execute and generate the actual content. This repo is the result of that experiment. 
 
+How i did it ?
+
+I copied the Reddit post and its discussion,readme on huggingface,exampel_compose.py , i asked qwen3 max to design a plan for generating LongPage-compatible datasets from scratch. 
 ## Getting Started
 
 ### What You Need
@@ -72,7 +75,7 @@ Each line in this file represents one book, fully structured with metadata, chap
 You can customize the tool by editing the `.env` file:
 
 - `LLM_API_KEY`: Your API key
-- `LLM_MODEL`: The model you want to use (e.g., `llama3-70b-8192`, `gpt-4-turbo`)
+- `LLM_MODEL`: The model you want to use (e.g., `llama4`)
 - `LLM_BASE_URL`: The API endpoint
 - `MAX_RETRIES`: How many times to retry if an API call fails
 - `RATE_LIMIT_DELAY`: Delay between retries to avoid hitting rate limits
@@ -85,6 +88,10 @@ The tool works with several LLM providers:
 - **Ollama**: Run models locally. Install from ollama.com.
 - **LM Studio**: Another option for local models. Download from lmstudio.ai.
 - **OpenAI**: Use GPT models with your official API key.
+- 
+## Models with thinking modes are not supported 
+
+You cannot use models with thinking modes.
 
 ## Tips for Success
 
