@@ -10,6 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from pipeline import run_pipeline, BookPipeline
+from pipeline_parallel import run_pipeline as run_pipeline_parallel, ParallelBookPipeline
 
 
 def main():
@@ -51,20 +52,50 @@ def main():
         action="store_true",
         help="Validate the output file after generation"
     )
+
+    parser.add_argument(
+        "--parallel", "-p",
+        action="store_true",
+        help="Use parallel processing for improved performance (default: false)"
+    )
+
+    parser.add_argument(
+        "--no-parallel",
+        action="store_true",
+        help="Disable parallel processing (use original sequential pipeline)"
+    )
     
     args = parser.parse_args()
-    
+
+    # Determine whether to use parallel processing
+    use_parallel = args.parallel and not args.no_parallel
+
     try:
-        # Run pipeline
-        pipeline = BookPipeline(
-            books_dir=args.books_dir,
-            output_dir=args.output_dir
-        )
-        
-        output_file = pipeline.run_pipeline(
-            max_books=args.max_books,
-            output_format=args.output_format
-        )
+        if use_parallel:
+            print("🚀 Using parallel processing pipeline...")
+            # Run parallel pipeline
+            pipeline = ParallelBookPipeline(
+                books_dir=args.books_dir,
+                output_dir=args.output_dir,
+                enable_parallel=True
+            )
+
+            output_file = pipeline.run_pipeline(
+                max_books=args.max_books,
+                output_format=args.output_format
+            )
+        else:
+            print("📚 Using sequential processing pipeline...")
+            # Run original pipeline
+            pipeline = BookPipeline(
+                books_dir=args.books_dir,
+                output_dir=args.output_dir
+            )
+
+            output_file = pipeline.run_pipeline(
+                max_books=args.max_books,
+                output_format=args.output_format
+            )
         
         print(f"\n[SUCCESS] Pipeline completed successfully!")
         print(f"Output saved to: {output_file}")
